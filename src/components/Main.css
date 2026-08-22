@@ -1,0 +1,641 @@
+/* 메인 페이지 전체  */
+.main-page-container {
+  padding-top: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 메인 배너  */
+.main-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px 40px;
+  border-radius: 20px;
+  margin: 25px;
+  overflow: hidden;
+}
+
+.main-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 30, 60, 0.35);
+  backdrop-filter: blur(1px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 개별 슬라이드 */
+.banner-stat-slide {
+  background: rgba(255, 255, 255, 0.034);
+  padding: 30px 40px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* 활성화된 슬라이드의 박스만 보이고 비활성화된 슬라이드의 박스는 완전히 감춤 */
+.banner-slide-item:not(.active) .banner-stat-slide {
+  display: none;
+}
+
+.banner-slide-item {
+  width: 100%;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.banner-slide-item.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.banner-text h1 {
+  font-size: 2.5rem;
+  color: #c4e2f7;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+
+.banner-text p {
+  font-size: 1.5rem;
+  color: #f0f9ff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+  margin: 0;
+}
+
+.banner-text-slider {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.banner-slides-wrapper {
+  display: flex;
+  width: 100%;
+  transition: transform 1.0s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+
+
+.banner-stat-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.banner-stat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #99dde4;
+  padding: 0;
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  border: none;
+}
+
+.banner-stat-label {
+  font-weight: 700;
+}
+
+.banner-stat-value {
+  font-size: 2.5rem;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  font-weight: 900;
+  margin: 0 0 10px 0;
+}
+
+.banner-stat-desc {
+  font-size: 1.1rem;
+  color: #e2f1f5;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* 슬라이드 도트  */
+.banner-dots {
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.banner-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.banner-dot.active {
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  width: 24px;
+  border-radius: 4px;
+}
+
+.banner-image-area .banner-img {
+  max-width: 350px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* 메뉴 카드*/
+.menu-cards-section {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.menu-cards-section h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.cards-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+.menu-card {
+  background: #e8f6fa;
+  border: 1px solid #2c68ac;
+  border-radius: 16px;
+  padding: 30px;
+  flex: 1;
+  min-width: 250px;
+  max-width: 360px;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+.menu-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
+  border-color: #113c74;
+}
+
+.card-icon {
+  font-size: 3rem;
+  margin-bottom: 15px;
+}
+
+.menu-card h3 {
+  font-size: 1.3rem;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.menu-card p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  height: 70px;
+}
+
+.go-btn {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #77adb1;
+}
+
+/* 소나무 */
+.banner-stat-slide {
+  position: relative;
+  width: 100%;
+}
+
+.banner-growing-trees {
+  position: absolute;
+  right: 20px;
+  bottom: 50px;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  height: 120px;
+  pointer-events: none;
+}
+
+.growing-tree {
+  font-size: 3rem;
+  display: inline-block;
+  transform-origin: bottom center;
+  animation: treeGrowInBanner 1.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  opacity: 0;
+}
+
+.tree-1 {
+  animation-delay: 0.1s;
+  font-size: 3.8rem;
+}
+
+.tree-2 {
+  animation-delay: 0.4s;
+  font-size: 4.8rem;
+}
+
+.tree-3 {
+  animation-delay: 0.7s;
+  font-size: 5.6rem;
+}
+
+.tree-4 {
+  animation-delay: 0.2s;
+  font-size: 4.4rem;
+}
+
+.tree-5 {
+  animation-delay: 0.6s;
+  font-size: 3.1rem;
+}
+
+@keyframes treeGrowInBanner {
+  0% {
+    transform: scaleY(0) scaleX(0.5);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scaleY(1.1) scaleX(1.05);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scaleY(1) scaleX(1);
+    opacity: 1;
+  }
+}
+
+.banner-recycle-animation {
+  position: absolute;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.recycle-icon {
+  font-size: 4.5rem;
+  display: inline-block;
+  animation: spinRecycle 2.2s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
+  /* 가속도 */
+}
+
+.diamond-icon {
+  font-size: 4.5rem;
+  position: absolute;
+  opacity: 0;
+  transform: scale(0.5);
+  animation:
+    showDiamond 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.8s forwards,
+    diamondFloat 2.0s ease-in-out 2.0s infinite alternate;
+  /* 회전이 완료된 후 떠오른 후 위아래로 동동 떠다님 */
+}
+
+@keyframes spinRecycle {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+  }
+
+  80% {
+    transform: rotate(360deg) scale(0.8);
+    /* 10바퀴 (3600도) */
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: rotate(360deg) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes showDiamond {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes diamondFloat {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-16px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.banner-car-animation {
+  position: absolute;
+  right: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 200px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.running-car {
+  font-size: 6rem;
+  position: absolute;
+  left: -300px;
+  animation: driveAndStop 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.8s forwards;
+}
+
+.smoke-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.smoke {
+  position: absolute;
+  font-size: 2.2rem;
+  opacity: 0;
+}
+
+.smoke-1 {
+  top: 25px;
+  right: -10px;
+  animation: absorbSmoke1 3.5s ease-in-out 2.0s infinite;
+}
+
+.smoke-2 {
+  bottom: 25px;
+  right: -30px;
+  animation: absorbSmoke2 3.5s ease-in-out 2.4s infinite;
+}
+
+/* 빙하 */
+.banner-cloud-animation {
+  position: absolute;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 200px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.clouds-container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+}
+
+.cloud-emoji {
+  position: absolute;
+  font-size: 80px;
+  animation: fadeOutClouds 1.5s ease-in-out 2.0s forwards;
+}
+
+.glacier-emoji {
+  position: absolute;
+  font-size: 80px;
+  opacity: 0;
+  animation: fadeInIcebear 1.0s ease-in-out 2.3s forwards,
+    floatAnimation 2.0s ease-in-out 2.5s infinite;
+}
+
+@keyframes fadeOutClouds {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes fadeInIcebear {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes floatAnimation {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes driveAndStop {
+  0% {
+    left: -300px;
+  }
+
+  70% {
+    left: 25px;
+    transform: skewX(-10deg);
+    /* 급제동 쏠림 */
+  }
+
+  85% {
+    left: 15px;
+    transform: skewX(3deg);
+  }
+
+  100% {
+    left: 15px;
+    transform: skewX(0deg);
+  }
+}
+
+@keyframes absorbSmoke1 {
+  0% {
+    transform: translate(0, 0) scale(2.5);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translate(-140px, 15px) scale(0.1);
+    opacity: 0;
+  }
+}
+
+@keyframes absorbSmoke2 {
+  0% {
+    transform: translate(0, 0) scale(3.0);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translate(-130px, -15px) scale(0.1);
+    opacity: 0;
+  }
+}
+
+/* 지구 */
+.banner-protect-animation {
+  position: absolute;
+  right: 60px;
+  top: 80px;
+  transform: translateY(-50%);
+  width: 150px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.wiggle-hourglass {
+  font-size: 4.5rem;
+  position: absolute;
+  animation:
+    wiggleHourglass 0.8s ease-in-out infinite alternate,
+    fadeOutHourglass 0.8s ease-in-out 2s forwards;
+}
+
+.floating-earth-emoji {
+  font-size: 6rem;
+  position: absolute;
+  opacity: 0;
+  transform: scale(0.5);
+  animation:
+    fadeInEarth 1s ease-in-out 2.3s forwards,
+    floatEarth 2s ease-in-out 2.5s infinite;
+}
+
+@keyframes wiggleHourglass {
+  0% {
+    transform: rotate(-12deg);
+  }
+
+  100% {
+    transform: rotate(12deg);
+  }
+}
+
+@keyframes fadeOutHourglass {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+@keyframes fadeInEarth {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes floatEarth {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* 모바일 좁은 화면에서는 텍스트와 겹치지 않게 숨김 처리 */
+@media (max-width: 768px) {
+
+  .banner-growing-trees,
+  .banner-recycle-animation,
+  .banner-car-animation,
+  .banner-cloud-animation,
+  .banner-protect-animation {
+    display: none;
+  }
+}

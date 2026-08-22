@@ -1,0 +1,507 @@
+/* 전체 컨테이너 및 도화지 설정 */
+.page-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #f0f4f1;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  transition: background-color 0.6s ease;
+}
+
+.page-container.active-layout {
+  background-color: #f0f4f1;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+}
+
+.top-title-area {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 5;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  animation: titleSlideIn 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.top-title-area.fade-out {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.8);
+  pointer-events: none;
+}
+
+.top-subtitle {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #77adb1;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.top-main-title {
+  font-size: 3.2rem;
+  font-weight: 850;
+  color: #111111;
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+.top-desc-text {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #888888;
+  margin: 4px 0 0 0;
+  letter-spacing: 0.2px;
+}
+
+
+/* 4대 기업 로고(초기 상태) */
+.logo-wrapper {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+  max-width: 1000px;
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 10;
+}
+
+/* 개별로고 마우스호버시 스무스한 연결+ 클릭시 효과(애니메이션) */
+.logo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 0.6s ease,
+    top 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* 마우스 호버 시 입체감 통통 튀는 무브먼트 */
+.logo-item:hover {
+  transform: translateY(-8px) scale(1.04);
+}
+
+.logo-card {
+  width: 220px;
+  height: 220px;
+  border-radius: 70px;
+  padding: 32px;
+  box-sizing: border-box;
+  box-shadow: 10px 10px 20px rgba(148, 148, 148, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: slideInFromRight 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  opacity: 0;
+}
+
+.logo-card img {
+
+  object-fit: contain;
+  border: none;
+  display: block;
+}
+
+/* [인터랙션 핵심 1] 선택받은 로고가 중앙 상단으로 슬라이딩 이동 */
+.logo-item.move-up {
+  position: absolute;
+  top: -350px;
+  left: 50%;
+  pointer-events: none;
+  animation: logoSlideIn 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* 선택된 로고가 올라갔을 때는 카드 박스 스타일(배경색, 그림자, 패딩)을 제거하여 로고만 노출 */
+.logo-item.move-up .logo-card {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* [인터랙션 핵심 2] 선택받지 못한 로고는 옆으로 투명하게 스윽 증발 */
+.logo-item.fade-out {
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
+}
+
+/* 닫기 (초기화) 버튼 스타일링 (인트로 및 목록 뷰용) */
+.reset-btn {
+  display: block;
+  width: 100%;
+  background-color: #333333;
+  color: #ffffff;
+  border: none;
+  padding: 14px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 24px;
+  transition: background-color 0.2s ease;
+}
+
+.reset-btn:hover {
+  background-color: #111111;
+}
+
+
+/* ==========================================================================
+   Apple Style Fullscreen Snap Scroll Styles
+   ========================================================================== */
+
+/* 스크롤 컨테이너 */
+.apple-scroll-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* 100vh 풀스크린 스냅 섹션 */
+.apple-fullscreen-section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  box-sizing: border-box;
+  position: relative;
+  background-color: #f0f4f1;
+  border-bottom: 1px solid rgba(119, 173, 177, 0.06);
+}
+
+.apple-fullscreen-section.intro-section {
+  padding-top: 150px;
+  box-sizing: border-box;
+
+}
+
+.apple-fullscreen-section.intro-section .apple-section-content {
+  animation: slideInFromRight 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  opacity: 0;
+}
+
+/* 콘텐츠 정렬 및 좌우 여백 반영 */
+.apple-section-content {
+  max-width: 960px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 0 40px;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+/* 카테고리 태그 */
+.apple-tag {
+  font-size: 1.25rem;
+  font-weight: 850;
+  color: #77adb1;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  display: inline-block;
+}
+
+.apple-headline {
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: #111111;
+  line-height: 1.28;
+  margin: 0 0 24px 0;
+  letter-spacing: -1.5px;
+  word-break: keep-all;
+}
+
+/* 본문 상세 설명 */
+.apple-desc {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #555555;
+  /* 화이트 테마용 서브 텍스트 컬러 */
+  line-height: 1.75;
+  margin: 0 auto 20px auto;
+  max-width: 720px;
+  word-break: keep-all;
+  white-space: pre-wrap;
+  /* \n 줄바꿈 반영 */
+}
+
+/* 입체 비주얼 이모지/그래픽 영역 */
+.apple-graphic {
+  margin-top: 0px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: bounceSlow 3.5s infinite ease-in-out;
+}
+
+.apple-emoji-graphic {
+  font-size: 5rem;
+  filter: drop-shadow(0 10px 25px rgba(119, 173, 177, 0.12));
+}
+
+/* 스크롤 가이드 지시자 */
+.scroll-indicator {
+  font-size: 0.88rem;
+  color: #888888;
+  font-weight: 700;
+  margin-top: 24px;
+  animation: fadePulse 2s infinite ease-in-out;
+}
+
+/* 좌측 상단 플로팅 뒤로가기 버튼 */
+.floating-reset-btn {
+  position: fixed;
+  bottom: 50px;
+  /* 60px에서 50px로 변경 */
+  left: 50px;
+  /* 150px에서 50px로 변경 (조금 더 좌측 배치) */
+  background: #77adb1;
+  backdrop-filter: blur(8px);
+  border: 1.5px solid #77adb1;
+  color: #ffffff;
+  padding: 11px 22px;
+  border-radius: 30px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.floating-reset-btn:hover {
+  background: #9fcdcf;
+  color: #464545;
+  border-color: #9fcdcf;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(119, 173, 177, 0.35);
+}
+
+/* 마지막 세션 전용 복귀 단추 */
+.apple-reset-btn {
+  background: #111111 !important;
+  max-width: 280px;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 16px 36px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transition: all 0.25s ease;
+}
+
+.apple-reset-btn:hover {
+  background: #222222 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* 화면 너비 1250px 이하 모바일 환경에서 브랜드 목록 버튼 위치 조정 */
+@media (max-width: 1250px) {
+  .floating-reset-btn {
+    left: 16px !important;
+    bottom: 16px !important;
+    transform: none !important;
+  }
+}
+
+
+/* ==========================================================================
+   애니메이션 Keyframes 정의
+   ========================================================================== */
+
+@keyframes bounceSlow {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fadePulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(80px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes logoSlideIn {
+  from {
+    opacity: 0;
+    transform: translate(calc(-50% + 80px), 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@keyframes titleSlideIn {
+  from {
+    opacity: 0;
+    transform: translate(calc(-50% + 80px), -50%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+
+
+/* ==========================================================================
+   우측 하단 퀵 내비게이션 스타일 (Quick Navigation Float Style)
+   ========================================================================== */
+.quick-nav-container {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* 퀵 내비 메뉴 리스트 (호버 시 자연스럽게 떠오르기) */
+.quick-nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(15px);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.quick-nav-container:hover .quick-nav-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* 개별 카테고리 버튼 */
+.quick-nav-item {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(119, 173, 177, 0.25);
+  color: #336a6f;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.quick-nav-item:hover {
+  background: #77adb1;
+  color: #ffffff;
+  border-color: #77adb1;
+  transform: translateX(-4px);
+  box-shadow: 0 4px 16px rgba(119, 173, 177, 0.25);
+}
+
+/* 퀵 메뉴 트리거 버튼 */
+.quick-nav-trigger-btn {
+  background: #77adb1;
+  border: 1.5px solid #77adb1;
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(119, 173, 177, 0.25);
+  transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.quick-nav-trigger-btn:hover {
+  background: #5d969b;
+  border-color: #5d969b;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(119, 173, 177, 0.35);
+}
+
+/* 온라인 신청 링크 버튼 */
+.apply-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #77adb1, #5d969b);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-decoration: none;
+  border-radius: 30px;
+  letter-spacing: 0.3px;
+  box-shadow: 0 6px 20px rgba(119, 173, 177, 0.35);
+  transition: all 0.28s cubic-bezier(0.25, 0.8, 0.25, 1);
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.apply-link-btn:hover {
+  background: linear-gradient(135deg, #5d969b, #4a7f84);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 28px rgba(93, 150, 155, 0.45);
+  color: #ffffff;
+}
+
+.apply-link-btn:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+/* 모바일 반응형 (900px 이하) */
+@media (max-width: 900px) {
+  .quick-nav-container {
+    right: 16px !important;
+    bottom: 16px !important;
+  }
+}
